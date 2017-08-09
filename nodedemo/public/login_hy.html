@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>HYLZ</title>
+		<link rel="stylesheet" href="stylesheets/reset.css" />
+		<link rel="stylesheet" href="stylesheets/login_hy.css" />
+		<script src="javascripts/jquery-1.11.2.js"></script>
+		<script src="javascripts/base64.js"></script>
+		<!--<script src="javascripts/SHA1.js"></script>-->
+	</head>
+
+	<body>
+		<div class="lobox">
+			<div id="header">
+				<div class="head">
+					<p class="logo"><img src="images/login_05_01.jpg" /></p>
+					<p class="page_title">华扬联众集团办公管理平台</p>
+				</div>
+			</div>
+			<div id="content">
+				<div class="content_co">
+					<div class="content_co_img"><img src="images/login_10.jpg" /></div>
+					<div class="login_box">
+						<div class="login_title">
+							用户登陆 / Login
+							<p class="login_line"><span style="background:#f7921e"></span><span style="background:#e4e4e4"></span></p>
+						</div>
+
+						<div class="login_input">
+							<p class="input_one">
+								<span class="input_ico">
+								<img src="images/login_5_03.jpg" alt="" />
+							</span>
+								<input type="text" placeholder="用户名" class="uname" />
+							</p>
+							<span id="judge_e"></span>
+							<p class="input_one" style="margin-top:5px;">
+								<span class="input_ico">
+								<img src="images/login_5_06.jpg" alt=""/>
+							</span>
+								<input type="password" placeholder="密　码" class="pwd" />
+							</p>
+                            <span id="judge_f"></span>
+							<p class="xuan"><input type="checkbox" />记住我</p>
+							<span class="goZc" style="color:#f8992d;text-decoration: underline;margin-top:10px;float:right;font-size:14px;cursor: pointer;">去注册</span>
+							<input type="button" value="登陆" class="submit" style="cursor: pointer;" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<p>
+					系统推荐使用Chrome浏览器,支持IE11,Sogou,Safari 浏览器
+					<a class="fuwu_call">全国服务热线：8888</a>
+				</p>
+				<p>Copyright © 2015 Hylink & InfoShip</p>
+			</div>
+		</div>
+		
+		
+		<div class="zhuce" style="display:none">
+			<div class="zhuce_box" style="clear:both">
+
+				 <p class="aTitle">Welcome!</p>
+                 <img src="images/del.png" style="display: block;width:30px;height:30px;float:right;margin-top:-35px;" class="zcDel"/>
+				<div class="zcbox">
+					<p style="padding-left:30px;><label for="uname" style="float:left; ">用户名：</label><input type="text " name="uname" id="uname" class="aInput"/></p>
+					<span id="judge_a"></span>
+					
+			<p style="padding-left:30px;><label for="pwd" style="float:left;">密&nbsp码：</label><input type="password" name="pwd" id="pwd" class="aInput" /></p>
+			        <span id="judge_b"></span>
+			        
+					<p style="padding-left:30px;><label for="tel" style="float:left; ">电&nbsp话：</label><input type="text" name="tel " id="tel" value=" " class="aInput"/></p>
+					<span id="judge_c"></span>
+					
+			<p style="padding-left:30px;><label for="qq" style="float:left;">Q&nbspQ:</label><input type="text" name="qq" id="qq" value="" class="aInput" /></p>
+			         <span id="judge_d"></span>
+			         
+					<button id="zcbtn">注册</button>
+				</div>
+
+			</div>
+		</div>
+		<script>
+                 //注册
+		  //用户名验证
+		  var yhm = /[\u4e00-\u9fa5a-zA-Z]{1,6}/;
+		  $('#uname').blur(function(){
+				var user_ = $('#uname').val();
+				if(user_.length == 0) {
+					$('#judge_a').html('用户名不能为空');
+				} else if(yhm.test(user_) == false) {
+					$('#judge_a').html('汉字或英文字母1-6位');
+				}else if(yhm.test(user_) == true){
+					$('#judge_a').html('');
+				}
+			})
+		  //密码验证
+		  var mima = /^[0-9_a-zA-Z]{6,14}$/;
+			$('#pwd').blur(function() {
+				var pass_ = $('#pwd').val();
+				if(pass_.length == 0) {
+					$('#judge_b').html('密码不能为空');				
+				}else if(mima.test(pass_) == false) {
+					$('#judge_b').html('英文字母和数字组合6-14位');
+				}else if(mima.test(pass_) == true){
+					$('#judge_b').html('');
+				}
+			})
+		
+//		 //电话验证
+//		   var tel = /^1[34578]\d{9}$/;
+//			$('#tel').blur(function() {
+//				var tel_ = $('#tel').val();
+//				if(tel_.length == 0) {
+//					$('#judge_c').html('手机号不能为空');
+//				} else if(tel.test(tel_) == false) {
+//					$('#judge_c').html('11位数字');
+//				}else if(tel.test(tel_) == true){
+//					$('#judge_c').html('');
+//				}
+//			})
+		    //QQ号验证
+		   var qq=/^[1-9][0-9]{4,9}$/;
+		   $('#qq').blur(function() {
+				var qq_ = $('#qq').val();
+				if(qq_.length == 0) {
+					$('#judge_d').html('QQ号不能为空');
+				} else if(qq.test(qq_) == false) {
+					$('#judge_d').html('6~10位，第1位不能为0');
+				}else if(qq.test(qq_) == true){
+					$('#judge_d').html('');
+				}
+			})
+		
+		  //登陆
+		   var yhm1 = /[\u4e00-\u9fa5a-zA-Z]{1,6}/;
+		  $('.uname').blur(function(){
+				var user_1 = $('.uname').val();
+				if(user_1.length == 0) {
+					$('#judge_e').html('用户名不能为空');
+				} else if(yhm1.test(user_1) == false) {
+					$('#judge_e').html('汉字或英文字母1-6位');
+				}else if(yhm1.test(user_1) == true){
+					$('#judge_e').html('');
+				}
+			})
+		  //密码验证
+		  var mima1 = /^[0-9_a-zA-Z]{6,14}$/;
+			$('.pwd').blur(function() {
+				var pass_1 = $('.pwd').val();
+				if(pass_1.length == 0) {
+					$('#judge_f').html('密码不能为空');				
+				}else if(mima1.test(pass_1) == false) {
+					$('#judge_f').html('英文字母和数字组合6-14位');
+				}else if(mima1.test(pass_1) == true){
+					$('#judge_f').html('');
+				}
+			})
+		  
+		  
+			$('.goZc').click(function() {
+					$('.zhuce').show();
+				})
+			$('.zcDel').click(function(){
+				    $('.zhuce').hide();
+			})
+				//注册
+			var base = new Base64();
+			$("#zcbtn").click(function() {
+				var user_ = $('#uname').val();
+				var pass_ = $('#pwd').val();
+				var tel_ = $('#tel').val();
+				var qq_ = $('#qq').val();
+				if(user_!==''||tel_!==''||pass_!==''||tel_!==''){
+					$.ajax({
+					type: 'post',
+					url: 'http://10.115.11.180:8005/text/zhuce',
+					data: {
+						uname: base.SET($('#uname').val()),
+						pwd: base.SET($('#pwd').val()),
+						tel: $('#tel').val(),
+						qq: $('#qq').val()
+					},
+					success: function(e) {
+						console.log(e);
+						if(e.flag == 1) {
+							alert('注册成功!');
+							$('.zhuce').hide();
+						} else if(e.flag == 2) {
+							alert('用户名已存在!');
+						} else if(e.flag == 3) {
+							alert('注册失败!');
+						}
+
+					},
+					error: function() {
+						alert('抱歉请求错误！');
+					}
+				})
+				}else{
+					alert('请输入正确信息');
+				}
+				
+				
+				
+			})
+
+			$('.submit').click(function() {
+//				alert($('.uname').val());
+                var user_1 = $('.uname').val();  
+                var pass_1 = $('.pwd').val();
+                
+                if(user_1!==''||pass_1!==''){
+                	$.ajax({
+					url: 'http://10.115.11.180:8005/text/login',
+					type: 'post',
+					data: {
+						uname: base.SET($('.uname').val()),
+						pwd: base.SET($('.pwd').val())
+					},
+					success: function(e) {
+						console.log(e);
+						if(e.flag == 1) {
+							alert('登录成功!');     
+							sessionStorage.setItem('uname',base.SET($('.uname').val()));
+							location.href="table.html";
+						}
+						if(e.flag == 2) {
+							alert('用户名不存在!');
+						}
+						if(e.flag == 3) {
+							alert('登录失败!');
+						}
+					}
+
+				})
+                }else{
+                	alert('请输入正确信息');
+                }
+				
+			})
+		</script>
+	</body>
+
+</html>

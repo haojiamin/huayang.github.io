@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="keywords" />
+		<meta name="description">
+		<meta name="detailport" content="width=device-width, initial-scale=1.0">
+		<!-- The styles -->
+		<link id="bs-css" href="stylesheets/bootstrap-cerulean.css" rel="stylesheet">
+		<style type="text/css">
+			body {
+				padding-bottom: 40px;
+			}
+			
+			.sidebar-nav {
+				padding: 9px 0;
+			}
+			
+			.table tr th,
+			.table tr td {
+				text-align: center;
+			}
+			
+			.btn {
+				margin-right: 8px;
+			}
+			
+			#table1 tr td {
+				/*width:150px;  
+				height:20px; */
+				/*white-space:nowrap;*/
+				/*word-break:keep-all;*/
+				overflow: hidden;
+				/*text-overflow:ellipsis;*/
+			}
+			/* 设置滚动条的样式 */
+			
+			::-webkit-scrollbar {
+				width: 5px;
+				margin-left: -30px;
+			}
+			/* 滚动槽 */
+			
+			::-webkit-scrollbar-track {
+				background: rgba(201, 201, 201, 0.4);
+				width: 1px;
+			}
+			/* 滚动条滑块 */
+			
+			::-webkit-scrollbar-thumb {
+				width: 5px;
+				height: 60px;
+				background: rgba(88, 89, 90, 0.8);
+				/*-webkit-box-shadow: inset 0 0 6px rgba(88,89,90,0.8);*/
+			}
+			
+			::-webkit-scrollbar-thumb:window-inactive {
+				background: rgba(255, 0, 0, 0.4);
+			}
+			
+			#list #aloading {
+				width: 120px;
+				height: 32px;
+				line-height: 32px;
+				border: 1px solid #d3d3d3;
+				position: absolute;
+				top: 35%;
+				left: 42%;
+				color:#333;
+				text-indent:20px;
+				text-align: center;
+				background: #f7f7f7;
+				-moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+				-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+				box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+			}
+		</style>
+		<link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">
+		<link href="stylesheets/charisma-app.css" rel="stylesheet">
+		<link href="stylesheets/jquery-ui-1.8.21.custom.css" rel="stylesheet">
+		<link href='stylesheets/fullcalendar.css' rel='stylesheet'>
+		<link href='stylesheets/fullcalendar.print.css' rel='stylesheet' media='print'>
+		<link href='stylesheets/chosen.css' rel='stylesheet'>
+		<link href='stylesheets/uniform.default.css' rel='stylesheet'>
+		<link href='stylesheets/colorbox.css' rel='stylesheet'>
+		<link href='stylesheets/jquery.cleditor.css' rel='stylesheet'>
+		<link href='stylesheets/jquery.noty.css' rel='stylesheet'>
+		<link href='stylesheets/noty_theme_default.css' rel='stylesheet'>
+		<link href='stylesheets/elfinder.min.css' rel='stylesheet'>
+		<link href='stylesheets/elfinder.theme.css' rel='stylesheet'>
+		<link href='stylesheets/jquery.iphone.toggle.css' rel='stylesheet'>
+		<link href='stylesheets/opa-icons.css' rel='stylesheet'>
+		<link href='stylesheets/uploadify.css' rel='stylesheet'>
+
+		<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+		<!-- The fav icon -->
+		<link rel="shortcut icon" href="images/favicon.ico">
+
+		<script src="javascripts/jquery-1.11.2.js"></script>
+	</head>
+
+	<body>
+		<!-- topbar starts -->
+		<div class="navbar">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand"><img alt="Charisma Logo" src="images/logo20.png" /> <span>HYLZ</span></a>
+
+					<!-- theme selector starts -->
+					<div class="btn-group pull-right theme-container">
+						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="icon-tint"></i><span class="hidden-phone"> Change Theme / Skin</span>
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" id="themes">
+							<li>
+								<a data-value="classic" href="#"><i class="icon-blank"></i> Classic</a>
+							</li>
+							<li>
+								<a data-value="cerulean" href="#"><i class="icon-blank"></i> Cerulean</a>
+							</li>
+							<li>
+								<a data-value="cyborg" href="#"><i class="icon-blank"></i> Cyborg</a>
+							</li>
+							<li>
+								<a data-value="redy" href="#"><i class="icon-blank"></i> Redy</a>
+							</li>
+							<li>
+								<a data-value="journal" href="#"><i class="icon-blank"></i> Journal</a>
+							</li>
+							<li>
+								<a data-value="simplex" href="#"><i class="icon-blank"></i> Simplex</a>
+							</li>
+							<li>
+								<a data-value="slate" href="#"><i class="icon-blank"></i> Slate</a>
+							</li>
+							<li>
+								<a data-value="spacelab" href="#"><i class="icon-blank"></i> Spacelab</a>
+							</li>
+							<li>
+								<a data-value="united" href="#"><i class="icon-blank"></i> United</a>
+							</li>
+						</ul>
+					</div>
+					<!-- theme selector ends -->
+
+					<!-- user dropdown starts -->
+					<div class="btn-group pull-right">
+						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+							<i class="icon-user"></i><span class="hidden-phone"> admin</span>
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#">Profile</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="login_hy.html">Logout</a>
+							</li>
+						</ul>
+					</div>
+					<!-- user dropdown ends -->
+
+					<div class="top-nav nav-collapse">
+						<ul class="nav">
+							<li>								
+							<a href="javascript:;">华扬联众</a>								
+							</li>
+
+						</ul>
+					</div>
+					<!--/.nav-collapse -->
+				</div>
+			</div>
+		</div>
+		<!-- topbar ends -->
+		<div class="container-fluid">
+			<div class="row-fluid">
+
+				<!-- left menu starts -->
+				<div class="span2 main-menu-span">
+					<div class="well nav-collapse sidebar-nav">
+						<ul class="nav nav-tabs nav-stacked main-menu">
+							<li class="nav-header hidden-tablet">Main</li>
+							<li>
+								<a class="ajax-link" href="table.html"><i class="icon-align-justify"></i><span class="hidden-tablet" style="margin-left:10px">Home New</span></a>
+							</li>
+							<li>
+								<a class="ajax-link" href="edit.html"><i class="icon-eye-open"></i><span class="hidden-tablet" style="margin-left:10px">Edit</span></a>
+							</li>
+							<li>
+								<a class="ajax-link" href="javascript:;"><i class="icon-edit"></i><span class="hidden-tablet" style="margin-left:10px">Forms</span></a>
+							</li>							
+							<li class="nav-header hidden-tablet">Sample Section</li>
+							<li>
+								<a class="ajax-link" href="userM.html"><i class="icon-calendar"></i><span class="hidden-tablet" style="margin-left:10px">User Message</span></a>
+							</li>
+						</ul>
+						<label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>
+					</div>
+					<!--/.well -->
+				</div>
+				<!--/span-->
+				<!-- left menu ends -->
+
+				<noscript>
+				<div class="alert alert-block span10">
+					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+
+				<div id="content" class="span10">
+					<div class="row-fluid sortable">
+						<div class="box span12">
+							<div class="box-header well" data-original-title>
+								<h2><i class="icon-user"></i>Home News</h2>
+								<div class="box-icon">
+									<a href="javascript:;" class="btn btn-setting btn-round"></a>
+									<a href="javascript:;" class="btn btn-minimize btn-round"></a>
+									<a href="javascript:;" class="btn btn-close btn-round"></a>
+								</div>
+							</div>
+							<div class="box-content" style="position: relative;">
+								<input type="text" id="search1" /><input type="button" style="position: absolute; margin-left: 2px; margin-top: 2px;background:#3B96CD;border:0;border-radius:3px;outline:none;width:60px;height:25px;color:#fff" value="search" id="searchBtn" />
+								<button type="button" style="position: absolute; left: 300px; margin-top: 2px;background:#3FE139;border:0;border-radius:3px;outline:none;width:70px;height:25px;"><a href="add.html" style="color:#fff">Add New</a></button>
+
+								<table class="table table-striped table-bordered bootstrap-datatable datatable">
+									<thead>
+										<tr>
+											<th>id</th>
+											<th>picture</th>
+											<th>title</th>
+											<th>content</th>
+											<th>actions</th>
+										</tr>
+									</thead>
+									<tbody id="list">
+										
+									</tbody>
+								</table>
+								<div class="pagination pagination-centered" id="pagecount">
+									<ul>
+
+									</ul>
+								</div>
+							</div>
+						
+						
+						
+						
+						</div>
+						<!--/span-->
+
+					</div>
+					<!--/row-->
+
+					<div class="row-fluid sortable">
+
+					</div>
+					<!--/row-->
+
+					<div class="row-fluid sortable">
+
+					</div>
+					<!--/row-->
+
+					<!-- content ends -->
+				</div>
+				<!--/#content.span10-->
+			</div>
+			<!--/fluid-row-->
+
+			<hr>
+
+			<div class="modal hide fade" id="myModal">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h3>Settings</h3>
+				</div>
+				<div class="modal-body">
+					<p>Here settings can be configured...</p>
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn" data-dismiss="modal">Close</a>
+					<a href="#" class="btn btn-primary">Save changes</a>
+				</div>
+			</div>
+
+		</div>
+		<!--/.fluid-container-->
+
+		<!-- external javascript
+	================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" src="javascripts/jquery-1.8.3.min.js"></script>
+		<!-- jQuery -->
+		<script src="javascripts/jquery-1.7.2.min.js"></script>
+		<!-- jQuery UI -->
+		<script src="javascripts/jquery-ui-1.8.21.custom.min.js"></script>
+		<!-- transition / effect library -->
+		<script src="javascripts/bootstrap-transition.js"></script>
+		<!-- alert enhancer library -->
+		<script src="javascripts/bootstrap-alert.js"></script>
+		<!-- modal / dialog library -->
+		<script src="javascripts/bootstrap-modal.js"></script>
+		<!-- custom dropdown library -->
+		<script src="javascripts/bootstrap-dropdown.js"></script>
+		<!-- scrolspy library -->
+		<script src="javascripts/bootstrap-scrollspy.js"></script>
+		<!-- library for creating tabs -->
+		<script src="javascripts/bootstrap-tab.js"></script>
+		<!-- library for advanced tooltip -->
+		<script src="javascripts/bootstrap-tooltip.js"></script>
+		<!-- popover effect library -->
+		<script src="javascripts/bootstrap-popover.js"></script>
+		<!-- button enhancer library -->
+		<script src="javascripts/bootstrap-button.js"></script>
+		<!-- accordion library (optional, not used in demo) -->
+		<script src="javascripts/bootstrap-collapse.js"></script>
+		<!-- carousel slideshow library (optional, not used in demo) -->
+		<script src="javascripts/bootstrap-carousel.js"></script>
+		<!-- autocomplete library -->
+		<script src="javascripts/bootstrap-typeahead.js"></script>
+		<!-- tour library -->
+		<script src="javascripts/bootstrap-tour.js"></script>
+		<!-- library for cookie management -->
+		<script src="javascripts/jquery.cookie.js"></script>
+		<!-- calander plugin -->
+		<script src='javascripts/fullcalendar.min.js'></script>
+		<!-- data table plugin -->
+		<script src='javascripts/jquery.dataTables.min.js'></script>
+
+		<!-- chart libraries start -->
+		<script src="javascripts/excanvas.js"></script>
+		<script src="javascripts/jquery.flot.min.js"></script>
+		<script src="javascripts/jquery.flot.pie.min.js"></script>
+		<script src="javascripts/jquery.flot.stack.js"></script>
+		<script src="javascripts/jquery.flot.resize.min.js"></script>
+		<!-- chart libraries end -->
+
+		<!-- select or dropdown enhancer -->
+		<script src="javascripts/jquery.chosen.min.js"></script>
+		<!-- checkbox, radio, and file input styler -->
+		<script src="javascripts/jquery.uniform.min.js"></script>
+		<!-- plugin for gallery image detail -->
+		<script src="javascripts/jquery.colorbox.min.js"></script>
+		<!-- rich text editor library -->
+		<script src="javascripts/jquery.cleditor.min.js"></script>
+		<!-- notification plugin -->
+		<script src="javascripts/jquery.noty.js"></script>
+		<!-- file manager library -->
+		<script src="javascripts/jquery.elfinder.min.js"></script>
+		<!-- star rating plugin -->
+		<script src="javascripts/jquery.raty.min.js"></script>
+		<!-- for iOS style toggle switch -->
+		<script src="javascripts/jquery.iphone.toggle.js"></script>
+		<!-- autogrowing textarea plugin -->
+		<script src="javascripts/jquery.autogrow-textarea.js"></script>
+		<!-- multiple file upload plugin -->
+		<script src="javascripts/jquery.uploadify-3.1.min.js"></script>
+		<!-- history.js for cross-browser state change on ajax -->
+		<script src="javascripts/jquery.history.js"></script>
+		<!-- application script for Charisma demo -->
+		<!--<script src="javascripts/charisma.js"></script>-->
+		<script>
+			//alert(sessionStorage.getItem('uname'));
+
+			if(sessionStorage.getItem('uname') == null || sessionStorage.getItem('uname') == '') {
+				location.href = "login_hy.html";
+			}
+			
+			
+            	//搜索
+//			var str = window.location.search.substring(4);
+			$('#searchBtn').click(function() {
+				var sea = $('#search1').val();
+				alert(sea)
+				$.ajax({
+					url: 'http://10.115.11.180:8005/text/search?s=' + sea,
+					type: 'get',
+					success: function(e) {
+						debugger
+						console.log(e)
+						if(e.flag == 1) {
+							window.location.href = 'table.html';
+						} else {
+							$('#list').empty();
+							for(var i = 0; i < e.length; i++){
+								$('#list').append('<tr><td>' + e[i].id + '</td><td><img src="load/' + e[i].pic_src + '" style="width:200px;height:100px;display:block;margin:0 auto"/></td><td style="width:150px">' + e[i].title + '</td><td><p style="width:320px;height:120px;overflow:auto;margin:0 auto">' + e[i].content + '</p></td><td><a class="btn btn-success" href=form.html?id=' + e[i].id + '><i class="icon-zoom-in icon-white"></i>Detail</a><a class="btn btn-info" href=edit.html?id=' + e[i].id + '><i class="icon-edit icon-white"></i>Edit</a><a class="btn btn-danger" onclick=de(' + e[i].id + ')><i class="icon-trash icon-white"></i>Delete</a></td></tr>');
+							}
+						}
+					}
+				})
+			})
+			
+			
+			var curPage = 1; //当前页码
+			var total, pageSize, totalPage;
+			//获取数据
+			function getData(page) {
+				$.ajax({
+					url: "http://10.115.11.180:8005/text/page",
+					type: "POST",
+					dataType: "json",
+					data: {
+						'pageNum': page - 1
+					},
+					beforeSend: function() {
+						$('#list').append('<p id="aloading">loading...</p>');
+					},
+					success: function(data) {
+						console.log(data);
+						$('#list').empty();
+						total = data.total; //总记录数
+						pageSize = data.pageSize; //每页显示页数
+						curPage = page; //当前页
+						totalPage = data.totalPage; // 总页数
+						var li = "";
+						var list = data.list;
+						$.each(list, function(index, e){							
+							li +='<tr><td>' + e.id + '</td><td><img src="load/' + e.pic_src + '" style="width:200px;height:100px;display:block;margin:0 auto"/></td><td style="width:150px">' + e.title + '</td><td><p style="width:320px;height:120px;overflow:auto;margin:0 auto">' + e.content + '</p></td><td><a class="btn btn-success" href=form.html?id=' + e.id + '><i class="icon-zoom-in icon-white"></i>Detail</a><a class="btn btn-info" href=edit.html?id=' + e.id + '><i class="icon-edit icon-white"></i>Edit</a><a class="btn btn-danger" onclick=de(' + e.id + ')><i class="icon-trash icon-white"></i>Delete</a></td></tr>'; 
+						$('#list').append(li);
+						})
+						
+					},
+					complete: function() {
+						getPageBar();
+					},
+					error: function() {
+						alert("数据加载失败");
+					}
+				});
+			}
+
+			//获取分页条
+			function getPageBar() {
+				//页码大于最大页数
+				if(curPage > totalPage) curPage = totalPage;
+				//页码小于1
+				if(curPage < 1) curPage = 1;
+				pageStr = "<li><a>共" + total + "条</a></li><li><a>" + curPage + "/" + totalPage + "</a></li>";
+
+				//如果是第一页
+				if(curPage == 1) {
+					pageStr += "<li><a>首页</a></li><li><a>上一页</a></li>";
+				} else {
+					pageStr += "<li><a href='javascript:void(0)' rel='1'>首页</a></li><li><a href='javascript:void(0)' rel='" + (curPage - 1) + "'>上一页</a></li>";
+				}
+
+				//如果是最后页
+				if(curPage >= totalPage) {
+					pageStr += "<li><a>下一页</a></li><li><a>尾页</a></li>";
+				} else {
+					pageStr += "<li><a href='javascript:void(0)' rel='" + (parseInt(curPage) + 1) + "'>下一页</a></li><li><a href='javascript:void(0)' rel='" + totalPage + "'>尾页</a></li>";
+				}
+
+				$("#pagecount ul").html(pageStr);
+			}
+
+			getData(1);
+			$("#pagecount ul li a").live('click', function() {
+				var rel = $(this).attr("rel");
+				if(rel) {
+					getData(rel);
+				}
+			});
+
+			//删除
+			function de(id) {
+				$.ajax({
+					url: 'http://10.115.11.180:8005/text/del?id=' + id,
+					type: 'get',
+					success: function(e) {.
+						if(e.flag == 2) {
+							alert('删除失败！');
+						} else if(e.flag == 1) {							
+							var r = confirm("确定要删除？");
+							if(r == true) {
+								$('#' + id).remove();
+								window.location.reload();
+							} 
+						}
+					}
+				})
+			}
+
+		
+		</script>
+	</body>
+
+</html>
